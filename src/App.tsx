@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { TextField, Card, CardContent, Typography, Box } from '@mui/material';
-import { createTheme, Theme, PaletteColor, PaletteColorOptions } from '@mui/material/styles'; // Import necessary types
+import { createTheme, PaletteColor, PaletteColorOptions } from '@mui/material/styles'; // Removed unused 'Theme'
 
-// Extend the Palette interface to include 'accent'
+// Remove the 'accent' related type augmentations
 declare module '@mui/material/styles' {
     interface Palette {
-        accent: PaletteColor;
+        // Removed accent: PaletteColor;
     }
 
     interface PaletteOptions {
-        accent?: PaletteColorOptions;
+        // Removed accent?: PaletteColorOptions;
     }
 }
 
 interface ColorInput {
     primary: string;
     secondary: string;
-    accent: string;
+    // Removed accent: string;
 }
 
 interface AugmentedColor {
@@ -101,10 +101,9 @@ const ColorCard: React.FC<{
 };
 
 const App: React.FC = () => {
-    const [colors, setColors] = useState<ColorInput>({
+    const [colors, setColors] = useState<Omit<ColorInput, 'accent'>>({
         primary: '#007bff',
         secondary: '#6c757d',
-        accent: '#dc3545',
     });
 
     const augmentedPrimary = colors.primary
@@ -113,11 +112,9 @@ const App: React.FC = () => {
     const augmentedSecondary = colors.secondary
         ? createTheme({ palette: { secondary: { main: colors.secondary } } }).palette.secondary
         : null;
-    const augmentedAccent = colors.accent
-        ? createTheme({ palette: { accent: { main: colors.accent } } }).palette.accent
-        : null;
+    // Removed augmentedAccent
 
-    const handleColorChange = (name: keyof ColorInput, value: string) => {
+    const handleColorChange = (name: keyof Omit<ColorInput, 'accent'>, value: string) => {
         setColors((prevColors) => ({
             ...prevColors,
             [name]: value,
@@ -141,12 +138,7 @@ const App: React.FC = () => {
                 onChange={(newValue) => handleColorChange('secondary', newValue)}
                 augmentedColor={augmentedSecondary as AugmentedColor | null}
             />
-            <ColorCard
-                label="Accent"
-                value={colors.accent}
-                onChange={(newValue) => handleColorChange('accent', newValue)}
-                augmentedColor={augmentedAccent as AugmentedColor | null}
-            />
+            {/* Removed the Accent Card */}
         </Box>
     );
 };
