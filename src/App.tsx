@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Card, CardContent, Typography, Box, Tooltip, useMediaQuery, useTheme } from '@mui/material';
 import { createTheme, PaletteColor, PaletteColorOptions } from '@mui/material/styles';
+import { amber, blue, blueGrey, brown, common, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from '@mui/material/colors';
 
 interface ColorInput {
     primary: string;
@@ -13,6 +14,26 @@ interface AugmentedColor {
     dark: string;
     contrastText: string;
 }
+
+// Helper function to convert RGB to Hex
+const rgbToHex = (r: number, g: number, b: number): string => {
+    return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+};
+
+// Helper function to get hex value from augmented color object
+const getHexFromAugmentedColor = (augmentedColor: AugmentedColor | null, shade: keyof AugmentedColor): string => {
+    if (!augmentedColor) {
+        return '';
+    }
+    const colorValue = augmentedColor[shade];
+    if (colorValue.startsWith('rgb')) {
+        const rgbMatch = colorValue.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        if (rgbMatch) {
+            return rgbToHex(parseInt(rgbMatch[1], 10), parseInt(rgbMatch[2], 10), parseInt(rgbMatch[3], 10));
+        }
+    }
+    return colorValue;
+};
 
 const ColorCard: React.FC<{
     label: string;
@@ -53,10 +74,10 @@ const ColorCard: React.FC<{
                             {['main', 'light', 'dark'].map((shade) => (
                                 <Tooltip key={shade} title="Click to copy">
                                     <Box
-                                        onClick={() => handleColorClick(augmentedColor[shade as keyof AugmentedColor])}
+                                        onClick={() => handleColorClick(getHexFromAugmentedColor(augmentedColor, shade as keyof AugmentedColor))}
                                         sx={{
-                                            flexGrow: 1, // Make rectangles grow to take equal space
-                                            minWidth: { xs: 'calc(50% - 0.5px)', sm: 'auto' }, // Adjust minWidth for smaller screens
+                                            flexGrow: 1,
+                                            minWidth: { xs: 'calc(50% - 0.5px)', sm: 'auto' },
                                             height: 70,
                                             bgcolor: augmentedColor[shade as keyof AugmentedColor],
                                             color: augmentedColor.contrastText,
@@ -70,7 +91,9 @@ const ColorCard: React.FC<{
                                         }}
                                     >
                                         {shade.charAt(0).toUpperCase() + shade.slice(1)}
-                                        <Typography variant="caption" textAlign="center">{augmentedColor[shade as keyof AugmentedColor]}</Typography>
+                                        <Typography variant="caption" textAlign="center">
+                                            {getHexFromAugmentedColor(augmentedColor, shade as keyof AugmentedColor)}
+                                        </Typography>
                                     </Box>
                                 </Tooltip>
                             ))}
