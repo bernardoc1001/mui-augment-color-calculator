@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# MUI Color Augmentation Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple web app to visualize and copy augmented color palettes from primary and secondary hex color inputs, powered by React and Material UI (MUI).
 
-## Available Scripts
+## Why is this tool useful?
 
-In the project directory, you can run:
+This application provides a quick and visual way to understand how Material UI's color theming works. It's particularly helpful for:
 
-### `npm start`
+* **Developers using MUI:** Easily see the `light` and `dark` variations that MUI generates from a base color, aiding in theme customization and ensuring consistent color palettes across your application.
+* **Designers collaborating with developers:** Quickly test different primary and secondary color combinations and see the resulting augmented shades, facilitating better communication and design decisions.
+* **Learning MUI theming:** A hands-on tool to experiment with color inputs and observe the output of MUI's color augmentation logic without needing to write extensive code.
+* **Quick color code retrieval:** Easily copy the exact hex codes of the generated color swatches for direct use in your CSS or application code.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* Enter primary and secondary hex colors.
+* See the generated main, light, and dark color variations.
+* Displays the hex code for each color swatch.
+* Click a swatch to copy its hex code to your clipboard.
+* Responsive design for different screen sizes.
 
-### `npm test`
+## Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* [Node.js](https://nodejs.org/) (v16+)
+* npm or yarn
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1.  **Clone (if applicable):**
+    ```bash
+    git clone <repository-url>
+    cd <project-directory>
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Running the App
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+# or
+yarn start
+ ```
+Open your browser to http://localhost:3000.
+How to Use
 
-### `npm run eject`
+1. Type hex color codes (e.g., #FF0000) into the "Primary Color" and "Secondary Color" fields.
+2. View the "Main", "Light", and "Dark" color boxes with their hex codes.
+3. Hover over a color box to see "Click to copy".
+4. Click a color box to copy its hex code.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* react
+* typescript
+* @mui/material
+* @emotion/react
+* @emotion/styled
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Contributing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Feel free to contribute by forking and submitting pull requests.
+License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT License (if applicable)
