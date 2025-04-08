@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Card, CardContent, Typography, Box, Tooltip, useMediaQuery, useTheme } from '@mui/material';
-import { createTheme, PaletteColor, PaletteColorOptions } from '@mui/material/styles';
-import { amber, blue, blueGrey, brown, common, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
 interface ColorInput {
     primary: string;
@@ -131,7 +130,7 @@ const App: React.FC = () => {
     return (
         <Box sx={{ p: 3 }}>
             <Typography variant="h4" gutterBottom>
-                MUI Color Augmentation
+                MUI Augment Color Calculator
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: 2 }}>
                 <ColorCard
